@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:proyectoflutter/src/models/response_api.dart';
 import 'package:proyectoflutter/src/providers/users_provider.dart';
 
@@ -26,11 +27,17 @@ class LoginController extends GetxController {
       print('Response Api: ${responseApi.toJson()}');
 
       if (responseApi.success == true) {
-        Get.snackbar('Login exitoso', responseApi.message ?? '');
+        GetStorage().write('user', responseApi.data);
+        //Get.snackbar('Login éxitoso', responseApi.message ?? '');
+        goToHomePage();
       }else{
         Get.snackbar('Login fállido', responseApi.message ?? '');
       }
     }
+  }
+
+  void goToHomePage(){
+    Get.offNamedUntil('/home', (route) => false);
   }
 
   bool isValidForm(String email, String password) {

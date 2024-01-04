@@ -23,7 +23,7 @@ class ResponseApi {
   factory ResponseApi.fromJson(Map<String, dynamic> json) => ResponseApi(
     success: json["success"],
     message: json["message"],
-    data: json["data"]
+    data: json["data"],
   );
 
   Map<String, dynamic> toJson() => {

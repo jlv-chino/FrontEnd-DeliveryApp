@@ -4,6 +4,12 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>Permitir acceder a la galería de imagenes</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Permitir acceder a la cámara</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Permitir acceder al micrófono</string>
 	<key>CFBundleDisplayName</key>
 	<string>Proyectoflutter</string>
 	<key>CFBundleExecutable</key>

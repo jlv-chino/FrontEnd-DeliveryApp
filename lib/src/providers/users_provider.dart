@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:proyectoflutter/src/environment/environment.dart';
 import 'package:proyectoflutter/src/models/user.dart';
 
-import '../models/response_api.dart';
+import 'package:proyectoflutter/src/models/response_api.dart';
 
 class UsersProvider extends GetConnect {
 

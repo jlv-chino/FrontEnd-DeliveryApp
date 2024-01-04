@@ -4,7 +4,6 @@ import 'package:proyectoflutter/src/models/user.dart';
 import 'package:proyectoflutter/src/providers/users_provider.dart';
 
 class RegisterController extends GetxController {
-
   TextEditingController emailController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
@@ -25,8 +24,7 @@ class RegisterController extends GetxController {
     print('Email ${email}');
     print('Password ${password}');
 
-    if (isValidForm(email, name, lastName, phone, password, confirmPassword)){
-
+    if (isValidForm(email, name, lastName, phone, password, confirmPassword)) {
       User user = User(
           email: email,
           name: name,
@@ -34,8 +32,7 @@ class RegisterController extends GetxController {
           phone: phone,
           password: password,
           id: '',
-          image: ''
-      );
+          image: '');
 
       Response response = await usersProvider.create(user);
 
@@ -45,13 +42,8 @@ class RegisterController extends GetxController {
     }
   }
 
-  bool isValidForm(String email,
-                   String name,
-                   String lastName,
-                   String phone,
-                   String password,
-                   String confirmPassword) {
-
+  bool isValidForm(String email, String name, String lastName, String phone,
+      String password, String confirmPassword) {
     if (email.isEmpty) {
       Get.snackbar('Error en email', 'Email campo vacío');
       return false;
@@ -83,7 +75,8 @@ class RegisterController extends GetxController {
     }
 
     if (confirmPassword.isEmpty) {
-      Get.snackbar('Error en confirmar password', 'Confirmar password campo vacío');
+      Get.snackbar(
+          'Error en confirmar password', 'Confirmar password campo vacío');
       return false;
     }
 
@@ -93,5 +86,12 @@ class RegisterController extends GetxController {
     }
 
     return true;
+  }
+
+  void showAlertDialog(BuildContext context) {
+    Widget galleryButton = ElevatedButton(
+        onPressed: () {},
+        child: Text('GALERIA')
+    );
   }
 }
