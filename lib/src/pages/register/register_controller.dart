@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:proyectoflutter/src/models/response_api.dart';
 import 'package:proyectoflutter/src/models/user.dart';
 import 'package:proyectoflutter/src/providers/users_provider.dart';
+import 'package:sn_progress_dialog/progress_dialog.dart';
 
 class RegisterController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -21,7 +22,7 @@ class RegisterController extends GetxController {
   ImagePicker picker = ImagePicker();
   File? imageFile;
 
-  void register() async {
+  void register(BuildContext context) async {
     String email = emailController.text.trim();
     String name = nameController.text;
     String lastName = lastNameController.text;
@@ -33,6 +34,10 @@ class RegisterController extends GetxController {
     print('Password ${password}');
 
     if (isValidForm(email, name, lastName, phone, password, confirmPassword)) {
+
+      ProgressDialog progressDialog = ProgressDialog(context: context);
+      progressDialog.show(max: 100, msg: 'Registrando datos...');
+
       User user = User(
           email: email,
           name: name,
@@ -44,6 +49,8 @@ class RegisterController extends GetxController {
 
       Stream stream = await usersProvider.createWithImage(user, imageFile!);
       stream.listen((res) {
+
+        progressDialog.close();
         ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
 
         if (responseApi.success == true){
